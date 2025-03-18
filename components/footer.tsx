@@ -1,6 +1,77 @@
-import Link from "next/link"
+import { Facebook, Instagram, Linkedin, LucideIcon, Twitter, Youtube } from "lucide-react"
 import Image from "next/image"
-import { Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react"
+import Link from "next/link"
+
+interface SocialLink {
+  icon: LucideIcon
+  label: string
+  href: string
+}
+
+interface FooterLink {
+  label: string
+  href: string
+}
+
+interface FooterSection {
+  title: string
+  links: FooterLink[]
+}
+
+const socialLinks: SocialLink[] = [
+  { icon: Facebook, label: "Facebook", href: "#" },
+  { icon: Twitter, label: "Twitter", href: "#" },
+  { icon: Instagram, label: "Instagram", href: "#" },
+  { icon: Linkedin, label: "LinkedIn", href: "#" },
+  { icon: Youtube, label: "YouTube", href: "#" },
+]
+
+const quickLinks: FooterLink[] = [
+  { label: "Biz Haqimizda", href: "#about" },
+  { label: "Dasturlar", href: "#programs" },
+  { label: "Kampus Hayoti", href: "#campus" },
+  { label: "O'qituvchilar", href: "#faculty" },
+  { label: "Aloqa", href: "#contact" },
+]
+
+const resources: FooterLink[] = [
+  { label: "Talaba Portali", href: "#" },
+  { label: "Kutubxona", href: "#" },
+  { label: "Karyera Xizmatlari", href: "#" },
+  { label: "Akademik Kalendar", href: "#" },
+  { label: "Bitiruvchilar Tarmog'i", href: "#" },
+]
+
+const footerSections: FooterSection[] = [
+  { title: "Tezkor Havolalar", links: quickLinks },
+  { title: "Resurslar", links: resources },
+]
+
+const SocialButton = ({ icon: Icon, label, href }: SocialLink) => (
+  <Link href={href} className="text-white hover:text-gold-300 transition-colors">
+    <Icon size={18} />
+    <span className="sr-only">{label}</span>
+  </Link>
+)
+
+const FooterLink = ({ label, href }: FooterLink) => (
+  <li>
+    <Link href={href} className="text-college-200 hover:text-gold-300 transition-colors text-sm md:text-base">
+      {label}
+    </Link>
+  </li>
+)
+
+const FooterSection = ({ title, links }: FooterSection) => (
+  <div>
+    <h3 className="text-base md:text-lg font-bold mb-3 md:mb-6">{title}</h3>
+    <ul className="space-y-2 md:space-y-3">
+      {links.map((link, index) => (
+        <FooterLink key={index} {...link} />
+      ))}
+    </ul>
+  </div>
+)
 
 export default function Footer() {
   return (
@@ -24,105 +95,15 @@ export default function Footer() {
               rivojlanishga erishishga imkon berish.
             </p>
             <div className="flex space-x-3 md:space-x-4">
-              <Link href="#" className="text-white hover:text-gold-300 transition-colors">
-                <Facebook size={18} />
-                <span className="sr-only">Facebook</span>
-              </Link>
-              <Link href="#" className="text-white hover:text-gold-300 transition-colors">
-                <Twitter size={18} />
-                <span className="sr-only">Twitter</span>
-              </Link>
-              <Link href="#" className="text-white hover:text-gold-300 transition-colors">
-                <Instagram size={18} />
-                <span className="sr-only">Instagram</span>
-              </Link>
-              <Link href="#" className="text-white hover:text-gold-300 transition-colors">
-                <Linkedin size={18} />
-                <span className="sr-only">LinkedIn</span>
-              </Link>
-              <Link href="#" className="text-white hover:text-gold-300 transition-colors">
-                <Youtube size={18} />
-                <span className="sr-only">YouTube</span>
-              </Link>
+              {socialLinks.map((link, index) => (
+                <SocialButton key={index} {...link} />
+              ))}
             </div>
           </div>
 
-          <div>
-            <h3 className="text-base md:text-lg font-bold mb-3 md:mb-6">Tezkor Havolalar</h3>
-            <ul className="space-y-2 md:space-y-3">
-              <li>
-                <Link
-                  href="#about"
-                  className="text-college-200 hover:text-gold-300 transition-colors text-sm md:text-base"
-                >
-                  Biz Haqimizda
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#programs"
-                  className="text-college-200 hover:text-gold-300 transition-colors text-sm md:text-base"
-                >
-                  Dasturlar
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#campus"
-                  className="text-college-200 hover:text-gold-300 transition-colors text-sm md:text-base"
-                >
-                  Kampus Hayoti
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#faculty"
-                  className="text-college-200 hover:text-gold-300 transition-colors text-sm md:text-base"
-                >
-                  O'qituvchilar
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#contact"
-                  className="text-college-200 hover:text-gold-300 transition-colors text-sm md:text-base"
-                >
-                  Aloqa
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-base md:text-lg font-bold mb-3 md:mb-6">Resurslar</h3>
-            <ul className="space-y-2 md:space-y-3">
-              <li>
-                <Link href="#" className="text-college-200 hover:text-gold-300 transition-colors text-sm md:text-base">
-                  Talaba Portali
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-college-200 hover:text-gold-300 transition-colors text-sm md:text-base">
-                  Kutubxona
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-college-200 hover:text-gold-300 transition-colors text-sm md:text-base">
-                  Karyera Xizmatlari
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-college-200 hover:text-gold-300 transition-colors text-sm md:text-base">
-                  Akademik Kalendar
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-college-200 hover:text-gold-300 transition-colors text-sm md:text-base">
-                  Bitiruvchilar Tarmog'i
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {footerSections.map((section, index) => (
+            <FooterSection key={index} {...section} />
+          ))}
 
           <div>
             <h3 className="text-base md:text-lg font-bold mb-3 md:mb-6">Obuna Bo'ling</h3>
