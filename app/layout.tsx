@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Kolej',
   generator: 'Kolej',
   openGraph: {
-    title: 'online Kolej',
+    title: 'Online Kolej',
 		description:
 			"Kolej - bu sizning o'qish yo'lingizni boshlash uchun eng yaxshi joy. Bizning onlayn platformamiz orqali siz o'zingizga mos ta'lim yo'nalishini tanlashingiz mumkin.",
 		type: 'website',
